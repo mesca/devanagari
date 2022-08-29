@@ -1,2 +1,3 @@
-# devanagari
-A helper for Devanāgarī prononciation
+# Devanāgarī
+
+Visit https://mesca.github.io/devanagari/

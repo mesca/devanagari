@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Devanāgarī</title>
+        <style type="text/css">
+            * {
+                box-sizing: border-box;
+            }
+            .row {
+                display: flex;
+                /*
+                margin-left:-5px;
+                margin-right:-5px;
+                */
+            }
+            .column {
+                /*
+                flex: 50%;
+                padding: 5px;
+                */
+            }
+            body {
+                font-family: sans-serif;
+            }
+            table {
+                margin: 10px;
+                cursor: default;
+            }
+            table, th, td {
+                border: 1px solid;
+                text-align: center;
+            }
+            th {
+                background-color: #C0C0C0;
+            }
+            th, td:not(:empty):not(.caption) {
+                cursor: pointer;
+            }
+            .sh>th {
+                background-color: #dcdcdc;
+            }
+            td:empty, .caption {
+                border: none;
+            }
+            th, td {
+                padding: 5px;
+            }
+            .deva {
+                font-size: 30px;
+            }
+            .sterm {
+                font-style: italic;
+            }
+            .eterm {
+                font-size: 12px;
+            }
+            .highlight, .sh>th.highlight {
+                background-color: #FFFACD;
+            }
+            .play {
+                background-color: #32DE84;
+            }
+        </style>
+        <script defer type="text/javascript">
+            'use strict';
+            window.addEventListener('DOMContentLoaded', () => {
+
+                // Higlight
+                const headers = ['velar', 'palatal', 'labial', 'retroflex', 'dental', 'palato-velar', 'labio-velar', 'short', 'long', 'stop', 'nasal', 'semivowel', 'sibilant', 'voiced', 'unvoiced', 'aspirated', 'unaspirated'];
+                for (const header of headers) {
+                    const els = document.querySelectorAll(`th.${header}`);
+                    for (const el of els) {
+                        el.addEventListener('click', () => {
+                            const higlighted = document.querySelectorAll('.highlight');
+                            const enable = el.classList.contains('highlight') ? false : true;
+                            Array.prototype.forEach.call(higlighted, function (el, i) {
+                                el.classList.remove('highlight');
+                            });
+                            if (enable) {
+                                const els = document.querySelectorAll(`.${header}:not(:empty):not(tr)`);
+                                for (const el of els) {
+                                    el.classList.add('highlight');
+                                }
+                            }
+                        });
+                    }
+                }
+
+                // Play
+                const els = document.querySelectorAll('.uni');
+                for (const el of els) {
+                    const audio = new Audio(`sounds/${el.innerHTML}.mp3`);
+                    const td = el.parentNode;
+                    audio.addEventListener('ended', () => {
+                        td.classList.remove('play');
+                    });
+                    const parent = el.parentNode;
+                    td.addEventListener('click', (e) => {
+                        td.classList.add('play');
+                        audio.play();
+                    });
+                }
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="row">
+            <div class="column">
+                <table id="vowels">
+                    <tbody>
+                        <tr>
+                            <td class="caption">
+                                <div class="sterm">svara</div>
+                                <div class="eterm">Vowels</div>
+                            </td>
+                            <th class="short">
+                                <div class="sterm">hrasva</div>
+                                <div class="eterm">Short</div>
+                            </th>
+                            <th class="long" colspan="2">
+                                <div class="sterm">dīrgha</div>
+                                <div class="eterm">Long</div>
+                            </th>
+                        </tr>
+                        <tr class="velar">
+                            <th class="velar">
+                                <div class="sterm">kaṇṭhya</div>
+                                <div class="eterm">Velar</div>
+                            </th>
+                            <td id="अ" class="vowel short">
+                                <span class="deva">अ</span><br />
+                                <span class="uni">a</span>
+                            </td>
+                            <td id="आ" class="vowel long" colspan="2">
+                                <span class="deva">आ</span><br />
+                                <span class="uni">ā</span>
+                            </td>
+                        </tr>
+                        <tr class="palatal">
+                            <th class="palatal">
+                                <div class="sterm">tālavya</div>
+                                <div class="eterm">Palatal</div>
+                            </th>
+                            <td id="इ" class="vowel short">
+                                <span class="deva">इ</span><br />
+                                <span class="uni">i</span>
+                            </td>
+                            <td id="ई" class="vowel long" colspan="2">
+                                <span class="deva">ई</span><br />
+                                <span class="uni">ī</span>
+                            </td>
+                        </tr>
+                        <tr class="labial">
+                            <th class="labial">
+                                <div class="sterm">oṣṭhya</div>
+                                <div class="eterm">Labial</div>
+                            </th>
+                            <td id="उ" class="vowel short">
+                                <span class="deva">उ</span><br />
+                                <span class="uni">u</span>
+                            </td>
+                            <td id="ऊ" class="vowel long" colspan="2">
+                                <span class="deva">ऊ</span><br />
+                                <span class="uni">ū</span>
+                            </td>
+                        </tr>
+                        <tr class="retroflex">
+                            <th class="retroflex">
+                                <div class="sterm">mūrdhanya</div>
+                                <div class="eterm">Retroflex</div>
+                            </th>
+                            <td id="ऋ" class="vowel short">
+                                <span class="deva">ऋ</span><br />
+                                <span class="uni">ṛ</span>
+                            </td>
+                            <td id="ॠ" class="vowel long" colspan="2">
+                                <span class="deva">ॠ</span><br />
+                                <span class="uni">ṝ</span>
+                            </td>
+                        </tr>
+                        <tr class="dental">
+                            <th class="dental">
+                                <div class="sterm">dantya</div>
+                                <div class="eterm">Dental</div>
+                            </th>
+                            <td id="ऌ" class="vowel short">
+                                <span class="deva">ऌ</span><br />
+                                <span class="uni">ḷ</span>
+                            </td>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr class="palato-velar">
+                            <th class="palato-velar">
+                                <div class="sterm">kaṇṭhatālavya</div>
+                                <div class="eterm">Palato-Velar</div>
+                            </th>
+                            <td></td>
+                            <td id="ए" class="vowel long palatal velar palato-velar">
+                                <span class="deva">ए</span><br />
+                                <span class="uni">e</span>
+                            </td>
+                            <td id="ऐ" class="vowel long palatal velar palato-velar">
+                                <span class="deva">ऐ</span><br />
+                                <span class="uni">ai</span>
+                            </td>
+                        </tr>
+                        <tr class="labio-velar">
+                            <th class="labio-velar">
+                                <div class="sterm">kaṇṭhoṣṭhya</div>
+                                <div class="eterm">Labio-Velar</div>
+                            </th>
+                            <td></td>
+                            <td id="ओ" class="vowel long labial velar labio-velar">
+                                <span class="deva">ओ</span><br />
+                                <span class="uni">o</span>
+                            </td>
+                            <td id="औ" class="vowel long labial velar labio-velar">
+                                <span class="deva">औ</span><br />
+                                <span class="uni">au</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="column">
+                <table id="consonants">
+                    <tbody>
+                        <tr>
+                            <td class="caption" rowspan="3">
+                                <div class="sterm">vyañjana</div>
+                                <div class="eterm">Consonants</div>
+                            </td>
+                            <th class="stop" colspan="4">
+                                <div class="sterm">sparśa</div>
+                                <div class="eterm">Stop</div>
+                            </th>
+                            <th class="nasal">
+                                <div class="sterm">anunāsika</div>
+                                <div class="eterm">Nasal</div>
+                            </th>
+                            <th class="semivowel">
+                                <div class="sterm">antastha</div>
+                                <div class="eterm">Semivowel</div>
+                            </th>
+                            <th class="sibilant" colspan="2">
+                                <div class="sterm">ūṣman</div>
+                                <div class="eterm">Sibilant</div>
+                            </th>
+                        </tr>
+                        <tr class="sh">
+                            <th class="unvoiced" colspan="2">
+                                <div class="sterm">aghoṣa</div>
+                                <div class="eterm">Unvoiced</div>
+                            </th>
+                            <th class="voiced" colspan="4">
+                                <div class="sterm">ghoṣa</div>
+                                <div class="eterm">Voiced</div>
+                            </th>
+                            <th class="unvoiced">
+                                <div class="sterm">aghoṣa</div>
+                                <div class="eterm">Unvoiced</div>
+                            </th>
+                            <th class="voiced">
+                                <div class="sterm">ghoṣa</div>
+                                <div class="eterm">Voiced</div>
+                            </th>
+                        </tr>
+                        <tr class="sh">
+                            <th class="unaspirated">
+                                <div class="sterm">alpaprāṇa</div>
+                                <div class="eterm">Unaspirated</div>
+                            </th>
+                            <th class="aspirated">
+                                <div class="sterm">mahāprāṇa</div>
+                                <div class="eterm">Aspirated</div>
+                            </th>
+                            <th class="unaspirated">
+                                <div class="sterm">alpaprāṇa</div>
+                                <div class="eterm">Unaspirated</div>
+                            </th>
+                            <th class="aspirated">
+                                <div class="sterm">mahāprāṇa</div>
+                                <div class="eterm">Aspirated</div>
+                            </th>
+                            <th class="unaspirated" colspan="2">
+                                <div class="sterm">alpaprāṇa</div>
+                                <div class="eterm">Unaspirated</div>
+                            </th>
+                            <th class="aspirated" colspan="2">
+                                <div class="sterm">mahāprāṇa</div>
+                                <div class="eterm">Aspirated</div>
+                            </th>
+                        </tr>
+                        <tr class="velar">
+                            <th class="velar">
+                                <div class="sterm">kaṇṭhya</div>
+                                <div class="eterm">Velar</div>
+                            </th>
+                            <td id="क" class="stop unvoiced unaspirated velar">
+                                <span class="deva">क</span><br />
+                                <span class="uni">ka</span>
+                            </td>
+                            <td id="ख" class="stop unvoiced aspirated velar">
+                                <span class="deva">ख</span><br />
+                                <span class="uni">kha</span>
+                            </td>
+                            <td id="ग" class="stop voiced unaspirated velar">
+                                <span class="deva">ग</span><br />
+                                <span class="uni">ga</span>
+                            </td>
+                            <td id="घ" class="stop voiced aspirated velar">
+                                <span class="deva">घ</span><br />
+                                <span class="uni">gha</span>
+                            </td>
+                            <td id="ङ" class="nasal voiced unaspirated velar">
+                                <span class="deva">ङ</span><br />
+                                <span class="uni">ṅa</span>
+                            </td>
+                            <td colspan="2"></td>
+                            <td id="ह" class="sibilant voiced aspirated velar">
+                                <span class="deva">ह</span><br />
+                                <span class="uni">ha</span>
+                            </td>
+                        </tr>
+                        <tr class="palatal">
+                            <th class="palatal">
+                                <div class="sterm">tālavya</div>
+                                <div class="eterm">Palatal</div>
+                            </th>
+                            <td id="च" class="stop unvoiced unaspirated palatal">
+                                <span class="deva">च</span><br />
+                                <span class="uni">ca</span>
+                            </td>
+                            <td id="छ" class="stop unvoiced aspirated palatal">
+                                <span class="deva">छ</span><br />
+                                <span class="uni">cha</span>
+                            </td>
+                            <td id="ज" class="stop voiced unaspirated palatal">
+                                <span class="deva">ज</span><br />
+                                <span class="uni">ja</span>
+                            </td>
+                            <td id="झ" class="stop voiced aspirated palatal">
+                                <span class="deva">झ</span><br />
+                                <span class="uni">jha</span>
+                            </td>
+                            <td id="ञ" class="nasal voiced unaspirated palatal">
+                                <span class="deva">ञ</span><br />
+                                <span class="uni">ña</span>
+                            </td>
+                            <td id="य" class="semivowel voiced unaspirated palatal">
+                                <span class="deva">य</span><br />
+                                <span class="uni">ya</span>
+                            </td>
+                            <td id="श" class="sibilant unvoiced aspirated palatal">
+                                <span class="deva">श</span><br />
+                                <span class="uni">śa</span>
+                            </td>
+                        </tr>
+                        <tr class="retroflex">
+                            <th class="retroflex">
+                                <div class="sterm">mūrdhanya</div>
+                                <div class="eterm">Retroflex</div>
+                            </th>
+                            <td id="ट" class="stop unvoiced unaspirated retroflex">
+                                <span class="deva">ट</span><br />
+                                <span class="uni">ṭa</span>
+                            </td>
+                            <td id="ठ" class="stop unvoiced aspirated retroflex">
+                                <span class="deva">ठ</span><br />
+                                <span class="uni">ṭha</span>
+                            </td>
+                            <td id="ड" class="stop voiced unaspirated retroflex">
+                                <span class="deva">ड</span><br />
+                                <span class="uni">ḍa</span>
+                            </td>
+                            <td id="ढ" class="stop voiced aspirated retroflex">
+                                <span class="deva">ढ</span><br />
+                                <span class="uni">ḍha</span>
+                            </td>
+                            <td id="ण" class="nasal voiced unaspirated retroflex">
+                                <span class="deva">ण</span><br />
+                                <span class="uni">ṇa</span>
+                            </td>
+                            <td id="र" class="semivowel voiced unaspirated retroflex">
+                                <span class="deva">र</span><br />
+                                <span class="uni">ra</span>
+                            </td>
+                            <td id="ष" class="sibilant unvoiced aspirated retroflex">
+                                <span class="deva">ष</span><br />
+                                <span class="uni">ṣa</span>
+                            </td>
+                        </tr>
+                        <tr class="dental">
+                            <th class="dental">
+                                <div class="sterm">dantya</div>
+                                <div class="eterm">Dental</div>
+                            </th>
+                            <td id="त" class="stop unvoiced unaspirated dental">
+                                <span class="deva">त</span><br />
+                                <span class="uni">ta</span>
+                            </td>
+                            <td id="थ" class="stop unvoiced aspirated dental">
+                                <span class="deva">थ</span><br />
+                                <span class="uni">tha</span>
+                            </td>
+                            <td id="द" class="stop voiced unaspirated dental">
+                                <span class="deva">द</span><br />
+                                <span class="uni">da</span>
+                            </td>
+                            <td id="ध" class="stop voiced aspirated dental">
+                                <span class="deva">ध</span><br />
+                                <span class="uni">dha</span>
+                            </td>
+                            <td id="न" class="nasal voiced unaspirated dental">
+                                <span class="deva">न</span><br />
+                                <span class="uni">na</span>
+                            </td>
+                            <td id="ल" class="semivowel voiced unaspirated dental">
+                                <span class="deva">ल</span><br />
+                                <span class="uni">la</span>
+                            </td>
+                            <td id="स" class="sibilant unvoiced aspirated dental">
+                                <span class="deva">स</span><br />
+                                <span class="uni">sa</span>
+                            </td>
+                        </tr>
+                        <tr class="labial">
+                            <th class="labial">
+                                <div class="sterm">oṣṭhya</div>
+                                <div class="eterm">Labial</div>
+                            </th>
+                            <td id="प" class="stop unvoiced unaspirated labial">
+                                <span class="deva">प</span><br />
+                                <span class="uni">pa</span>
+                            </td>
+                            <td id="फ" class="stop unvoiced aspirated labial">
+                                <span class="deva">फ</span><br />
+                                <span class="uni">pha</span>
+                            </td>
+                            <td id="ब" class="stop voiced unaspirated labial">
+                                <span class="deva">ब</span><br />
+                                <span class="uni">ba</span>
+                            </td>
+                            <td id="भ" class="stop voiced aspirated labial">
+                                <span class="deva">भ</span><br />
+                                <span class="uni">bha</span>
+                            </td>
+                            <td id="म" class="nasal voiced unaspirated labial">
+                                <span class="deva">म</span><br />
+                                <span class="uni">ma</span>
+                            </td>
+                            <td id="व" class="semivowel voiced unaspirated labial">
+                                <span class="deva">व</span><br />
+                                <span class="uni">va</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
