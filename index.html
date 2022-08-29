@@ -26,10 +26,12 @@
             }
             body {
                 font-family: sans-serif;
+                background-color: #FFFAFA;
             }
             table {
                 /*margin: 10px;*/
                 cursor: default;
+                background-color: #FFFFFF;
             }
             table, th, td {
                 border: 1px solid;
@@ -101,8 +103,10 @@
                     });
                     const parent = el.parentNode;
                     td.addEventListener('click', (e) => {
-                        td.classList.add('play');
-                        audio.play();
+                        if (audio.error === null) {
+                            td.classList.add('play');
+                            audio.play();
+                        }
                     });
                 }
 
@@ -458,6 +462,102 @@
                             <td id="व" class="semivowel voiced unaspirated labial">
                                 <span class="deva">व</span><br />
                                 <span class="uni">va</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column overflow">
+                <table id="extra">
+                    <thead>
+                        <tr>
+                            <td class="caption" colspan="7"><div class="eterm">Extra letters</div></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="ड़" class="">
+                                <span class="deva">ड़</span><br />
+                                <span class="uni">ṛa</span>
+                            </td>
+                            <td id="ढ़" class="">
+                                <span class="deva">ढ़</span><br />
+                                <span class="uni">ṛha</span>
+                            </td>
+                            <td id="क़" class="">
+                                <span class="deva">क़</span><br />
+                                <span class="uni">qa</span>
+                            </td>
+                            <td id="ख़" class="">
+                                <span class="deva">ख़</span><br />
+                                <span class="uni">ḳha</span>
+                            </td>
+                            <td id="ग़" class="">
+                                <span class="deva">ग़</span><br />
+                                <span class="uni">ġa</span>
+                            </td>
+                            <td id="ज़" class="">
+                                <span class="deva">ज़</span><br />
+                                <span class="uni">za</span>
+                            </td>
+                            <td id="फ़" class="">
+                                <span class="deva">फ़</span><br />
+                                <span class="uni">fa</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="column overflow">
+                <table id="numerals">
+                    <thead>
+                        <tr>
+                            <td class="caption" colspan="10"><div class="eterm">Numerals</div></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="०" class="">
+                                <span class="deva">०</span><br />
+                                <span class="uni">0</span>
+                            </td>
+                            <td id="१" class="">
+                                <span class="deva">१</span><br />
+                                <span class="uni">1</span>
+                            </td>
+                            <td id="२" class="">
+                                <span class="deva">२</span><br />
+                                <span class="uni">2</span>
+                            </td>
+                            <td id="३" class="">
+                                <span class="deva">३</span><br />
+                                <span class="uni">3</span>
+                            </td>
+                            <td id="४" class="">
+                                <span class="deva">४</span><br />
+                                <span class="uni">4</span>
+                            </td>
+                            <td id="५" class="">
+                                <span class="deva">५</span><br />
+                                <span class="uni">5</span>
+                            </td>
+                            <td id="६" class="">
+                                <span class="deva">६</span><br />
+                                <span class="uni">6</span>
+                            </td>
+                            <td id="७" class="">
+                                <span class="deva">७</span><br />
+                                <span class="uni">7</span>
+                            </td>
+                            <td id="८" class="">
+                                <span class="deva">८</span><br />
+                                <span class="uni">8</span>
+                            </td>
+                            <td id="९" class="">
+                                <span class="deva">९</span><br />
+                                <span class="uni">9</span>
                             </td>
                         </tr>
                     </tbody>
