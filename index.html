@@ -69,7 +69,7 @@
                 background-color: #32DE84;
             }
         </style>
-        <script defer type="text/javascript">
+        <script type="text/javascript">
 
             'use strict';
             window.addEventListener('DOMContentLoaded', () => {
@@ -104,18 +104,23 @@
                     })
                     return res.ok ? res.blob() : false;
                 }
+                let cache = {};
                 const els = document.querySelectorAll('.uni');
                 for (const el of els) {
-                    const url = `sounds/${el.innerHTML}.mp3`;
+                    const uni = el.innerHTML;
+                    const url = `sounds/${uni}.mp3`;
                     retrieve(url).then(blob => {
                         if (blob) {
-                            const audio = new Audio(URL.createObjectURL(blob));
+                            cache[uni] = URL.createObjectURL(blob);
+                            const audio = new Audio();
                             const td = el.parentNode;
                             audio.addEventListener('ended', () => {
                                 td.classList.remove('play');
+                                audio.src = ""; // Release resource (see: https://stackoverflow.com/a/30105846)
                             });
                             td.addEventListener('click', () => {
                                 td.classList.add('play');
+                                audio.src = cache[uni]; // Use data from cache
                                 audio.play();
                             });
                         }
