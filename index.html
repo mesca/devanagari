@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <style type="text/css">
-            * {
+/*            * {
                 box-sizing: border-box;
             }
             .row {
@@ -24,6 +24,10 @@
             }
             .column.overflow {
                 overflow-x:auto;
+            }*/
+            .container table {
+                display: inline-block;
+                padding: 10px;
             }
             body {
                 font-family: sans-serif;
@@ -132,8 +136,9 @@
         </script>
     </head>
     <body>
-        <div class="row">
-            <div class="column">
+        <div class="container">
+<!--         <div class="row">
+            <div class="column"> -->
                 <table id="vowels">
                     <tbody>
                         <tr>
@@ -249,8 +254,8 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div class="column overflow">
+<!--             </div>
+            <div class="column overflow"> -->
                 <table id="consonants">
                     <tbody>
                         <tr>
@@ -484,10 +489,10 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
+<!--             </div>
         </div>
         <div class="row">
-            <div class="column overflow">
+            <div class="column overflow"> -->
                 <table id="extra">
                     <thead>
                         <tr>
@@ -527,8 +532,8 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div class="column overflow">
+<!--             </div>
+            <div class="column overflow"> -->
                 <table id="numerals">
                     <thead>
                         <tr>
@@ -580,7 +585,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
+<!--             </div>
+        </div> -->
     </body>
 </html>
